@@ -19,11 +19,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          printf "machine github.com\n\
-            login brockwsmith225
-            password ${{ secrets.PAT_TOKEN }}\n" >> ~/.netrc
-          chmod 600 ~/.netrc
           pip install -r requirements.txt
+
+      - name: Store ratingsystems auth key
+        run: |
+          printf "${{ secrets.API_AUTH_KEY }}" >>  ~/.ratingsystems/auth/cfb
 
       - name: Fetch data
         run: |
