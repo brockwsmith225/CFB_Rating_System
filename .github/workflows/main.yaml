@@ -3,6 +3,10 @@ name: Rank CFB Teams
 on:
   workflow_dispatch:
     inputs:
+      year:
+        required: true
+        default: 2026
+        type: number
 
 jobs:
   rank:
@@ -28,12 +32,12 @@ jobs:
 
       - name: Fetch data
         run: |
-          ratingsystems fetch -d cfb -y 2026
+          ratingsystems fetch -d cfb -y ${{ inputs.year }}
 
       - name: Rank teams (pretty)
         run: |
-          ratingsystems rate -d cfb -y 2026 -r cer -r rrs --ranks --pretty
+          ratingsystems rate -d cfb -y ${{ inputs.year }} -r cer -r rrs --ranks --pretty
 
       - name: Rank teams (csv)
         run: |
-          ratingsystems rate -d cfb -y 2026 -r cer -r rrs --ranks
+          ratingsystems rate -d cfb -y ${{ inputs.year }} -r cer -r rrs --ranks
