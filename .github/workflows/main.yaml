@@ -23,6 +23,7 @@ jobs:
 
       - name: Store ratingsystems auth key
         run: |
+          mkdir -p ~/.ratingsystems/auth/
           printf "${{ secrets.API_AUTH_KEY }}" >>  ~/.ratingsystems/auth/cfb
 
       - name: Fetch data
