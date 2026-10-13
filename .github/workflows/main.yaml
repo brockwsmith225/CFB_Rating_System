@@ -1,0 +1,34 @@
+name: Rank CFB Teams
+
+on:
+  workflow_dispatch:
+    inputs:
+
+jobs:
+  rank:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.14
+
+      - name: Install dependencies
+        run: |
+          printf "machine github.com\n\
+            login brockwsmith225
+            password ${{ secrets.PAT_TOKEN }}\n" >> ~/.netrc
+          chmod 600 ~/.netrc
+          pip install -r requirements.txt
+
+      - name: Rank teams (pretty)
+        run: |
+          ratingsystems -d cfb -y 2026 -r cer -r rrs --ranks --pretty
+
+      - name: Rank teams (csv)
+        run: |
+          ratingsystems -d cfb -y 2026 -r cer -r rrs --ranks

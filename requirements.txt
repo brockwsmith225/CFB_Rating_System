@@ -1,0 +1,4 @@
+ratingsystems@git+https://github.com/brockwsmith225/Rating_Systems
+ratingsystems-data@git+https://github.com/brockwsmith225/Rating_Systems_Data_Sources
+ratingsystems-cer@git+https://github.com/brockwsmith225/Complete_Efficiency_Rating
+ratingsystems-rrs@git+https://github.com/brockwsmith225/Relative_Rating_System
